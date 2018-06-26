@@ -6,9 +6,12 @@ import TableRow from './TableRow';
 class DisplayItem extends Component {
     constructor(props) {
         super(props);
+
         this.state = {value: '', items: ''};
     }
-    componentDidMount(){
+
+
+    componentDidMount() {
         axios.get('http://laravelandreact.test/api/items')
             .then(response => {
                 this.setState({ items: response.data });
@@ -17,15 +20,16 @@ class DisplayItem extends Component {
                 console.log(error);
             })
     }
-    tabRow(){
+    tabRow() {
         if(this.state.items instanceof Array){
+            let handler = this.handler;
             return this.state.items.map(function(object, i){
                 return <TableRow obj={object} key={i} />;
             })
         }
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <h1>Items</h1>

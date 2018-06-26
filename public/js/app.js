@@ -62393,6 +62393,7 @@ var DisplayItem = function (_Component) {
         key: 'tabRow',
         value: function tabRow() {
             if (this.state.items instanceof Array) {
+                var handler = this.handler;
                 return this.state.items.map(function (object, i) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__TableRow__["a" /* default */], { obj: object, key: i });
                 });
@@ -62470,6 +62471,8 @@ var DisplayItem = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios_index__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios_index__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62481,16 +62484,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var TableRow = function (_Component) {
     _inherits(TableRow, _Component);
 
-    function TableRow() {
+    function TableRow(props) {
         _classCallCheck(this, TableRow);
 
-        return _possibleConstructorReturn(this, (TableRow.__proto__ || Object.getPrototypeOf(TableRow)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (TableRow.__proto__ || Object.getPrototypeOf(TableRow)).call(this, props));
+
+        _this.deleteItem = _this.deleteItem.bind(_this);
+        return _this;
     }
 
     _createClass(TableRow, [{
+        key: 'deleteItem',
+        value: function deleteItem(event) {
+            event.preventDefault();
+            var uri = 'http://laravelandreact.test/api/items/' + this.props.obj.id;
+            __WEBPACK_IMPORTED_MODULE_2_axios_index___default.a.delete(uri).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_1_react_router__["d" /* browserHistory */].push('/display-item');
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62525,7 +62541,7 @@ var TableRow = function (_Component) {
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'button',
-                        { className: 'btn btn-danger' },
+                        { onClick: this.deleteItem.bind(this), className: 'btn btn-danger' },
                         'Delete'
                     )
                 )
