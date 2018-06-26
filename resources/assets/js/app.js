@@ -14,10 +14,20 @@ require('./bootstrap');
  */
 
 require('./bootstrap');
+
+import axios from 'axios';
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
+import CreateItem from './components/CreateItem';
 
-import Example from './components/Example';
+import Master from './components/Master';
 
-render(<Example />, document.getElementById('example'));
+render(
+    <Router history={browserHistory}>
+        <Route path="/" component={Master} >
+            <Route path="/add-item" component={CreateItem} />
+        </Route>
+    </Router>,
+    document.getElementById('app')
+);
