@@ -20,6 +20,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import CreateItem from './components/CreateItem';
+import DisplayItem from './components/DisplayItem';
 
 import Master from './components/Master';
 
@@ -27,6 +28,7 @@ render(
     <Router history={browserHistory}>
         <Route path="/" component={Master} >
             <Route path="/add-item" component={CreateItem} />
+            <Route path="/display-item" component={DisplayItem} />
         </Route>
     </Router>,
     document.getElementById('app')

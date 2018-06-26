@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { browserHistory } from 'react-router';
 
 class CreateItem extends Component {
     constructor(props){
@@ -29,10 +30,10 @@ class CreateItem extends Component {
             price: this.state.productPrice
         };
 
-        let uri = 'http://laravelandreact.test/items';
+        let uri = 'http://laravelandreact.test/api/items';
 
         axios.post(uri, products).then((response) => {
-            // browserHistory.push('/display-item');
+            browserHistory.push('/display-item');
         });
     }
 

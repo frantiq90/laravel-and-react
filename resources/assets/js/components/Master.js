@@ -17,7 +17,7 @@ export default class Master extends Component {
                                 <Link className="nav-link" to="/add-item">Add item</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Features</a>
+                                <Link className="nav-link" to="/display-item">Display item</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Pricing</a>
